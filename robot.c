@@ -329,12 +329,6 @@ void robotMotorMove(struct Robot * robot, int crashed) {
 // DEFINE FUNCTIONS HERE
 
 void robotAutoMotorMove(struct Robot *robot, int front_centre_sensor, int left_sensor, int right_sensor) {
-    // if (front_centre_sensor > 0) {
-    //     if (robot->currentSpeed > 0) {
-    //         robot->direction = DOWN;
-    //     }
-    // }
-
 
     // Notes about context:
     // n: None. It's waiting for instructions.
@@ -366,27 +360,14 @@ void robotAutoMotorMove(struct Robot *robot, int front_centre_sensor, int left_s
                     if (right_sensor <= 2) {
                         robot->direction = UP;
                         robot->context = 'n';
+                    } else if (right_sensor > 2 && front_centre_sensor > 0){
+                        // If it's too close
+                        robot->direction = LEFT;
                     } else {
                         robot->direction = LEFT;
-                        robot->count++;
+                        robot->count = 0;
+                        robot->context = 'n';
                     }
-                    break;
-                case 1:
-                    if (right_sensor == 1) {
-                        robot->direction = RIGHT;
-                        robot->count++;
-                    } else {
-                        robot->direction = UP;
-                    }
-                    break;
-                case 2:
-                    // robot->direction = DOWN;
-                    robot->count = 0;
-                    robot->context = 'n';
-                    break;
-                default:
-                    robot->count = 0;
-                    robot->context = 'n';
                     break;
             }
             break;
