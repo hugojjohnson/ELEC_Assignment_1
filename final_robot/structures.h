@@ -20,6 +20,8 @@
 #define PI 3.14159265
 #define SENSOR_VISION 30
 
+#include <stdbool.h>
+
 struct Wall {
     int x,y;
     int width, height;
@@ -43,6 +45,10 @@ struct Robot {
     int count;
     int goal_angle;
     char context; 
+
+    bool paused;
+    bool next_frame;
+    int counter;
 };
 
 #endif // STRUCTURES_H_INCLUDED

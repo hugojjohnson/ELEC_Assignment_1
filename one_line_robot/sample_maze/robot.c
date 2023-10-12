@@ -3,7 +3,7 @@
 void setup_robot(struct Robot *robot){
     robot->x = OVERALL_WINDOW_WIDTH/2-50;
     robot->y = OVERALL_WINDOW_HEIGHT-50;
-    robot->true_x = OVERALL_WINDOW_WIDTH/2-100;
+    robot->true_x = OVERALL_WINDOW_WIDTH/2-50;
     robot->true_y = OVERALL_WINDOW_HEIGHT-50;
     robot->width = ROBOT_WIDTH;
     robot->height = ROBOT_HEIGHT;
@@ -12,8 +12,9 @@ void setup_robot(struct Robot *robot){
     robot->currentSpeed = 0;
     robot->crashed = 0;
     robot->auto_mode = 0;
-    robot->count = 0;
-    robot->context = 's';
+    robot->next_frame = false;
+    robot->paused = false;
+    robot->countdown = 0;
 
     printf("Press arrow keys to move manually, or enter to move automatically\n\n");
 }
@@ -327,132 +328,9 @@ void robotMotorMove(struct Robot * robot, int crashed) {
 }
 
 // DEFINE FUNCTIONS HERE
-
-void robotAutoMotorMove(struct Robot *robot, int front_centre_sensor, int left_sensor, int right_sensor) {
-
-    // Notes about context:
-    // n: None. It's waiting for instructions.
-    // h: Happy. It's just moving forwards.
-    // l: Lost. It can't find the left hand side.
-    // t: Trapped. It's cornered in
-    // s: setup.
-    if (robot->currentSpeed > 3) {
-        robot->direction = DOWN;
-        return;
-    }
-
-    switch (robot->context) {
-        case 'n':
-            if (right_sensor == 0) {
-                robot->context = 'l';
-                break;
-            } else if (right_sensor > 0 && front_centre_sensor > 0) {
-                robot->context = 't';
-                break;
-            } else if (right_sensor > 0 && front_centre_sensor == 0) {
-                robot->context = 'h';
-                break;
-            }
-            break;
-        case 'h':
-            switch(robot->count) {
-                case 0:
-                    if (right_sensor <= 2) {
-                        robot->direction = UP;
-                        robot->context = 'n';
-                    } else if (right_sensor > 2 && front_centre_sensor > 0){
-                        // If it's too close
-                        robot->direction = LEFT;
-                    } else {
-                        robot->direction = LEFT;
-                        robot->count = 0;
-                        robot->context = 'n';
-                    }
-                    break;
-            }
-            break;
-        case 's':
-            switch (robot->count) {
-                case 0:
-                    if (right_sensor > 0) {
-                        robot->count = 0;
-                        robot->context = 'n';
-                    } else {
-                        robot->direction = RIGHT;
-                        robot->count++;
-                    }
-                    break;
-                case 1:
-                    if (right_sensor > 1) {
-                        robot->direction = LEFT;
-                        robot->count = 0;
-                        robot->context = 'n';
-                    } else {
-                        robot->direction = UP;
-                    }
-                    break;
-            }
-            break;
-        case 'l':
-            switch (robot->count) {
-                case 0:
-                    robot->count++;
-                    robot->direction = UP;
-                    break;
-                case 1:
-                    robot->count++;
-                    robot->direction = UP;
-                    break;
-                case 2:
-                    robot->goal_angle = ((robot->angle + 90) % 360);
-                    robot->count++;
-                    break;
-                case 3:
-                    if (robot->angle == robot->goal_angle) {
-                        robot->count++;
-                    } else {
-                        robot->direction = RIGHT;
-                    }
-                    break;
-                case 4:
-                    if (right_sensor > 0) {
-                        robot->count = 0;
-                        robot->context = 'n';
-                        robot->direction = UP;
-                    } else {
-                        robot->count = 0;
-                        robot->context = 's';
-                        robot->direction = UP;
-                    }
-                    break;
-            }
-            break;
-        case 't':
-            switch (robot->count) {
-                case 0:
-                    if (robot->currentSpeed < 1) {
-                        robot->count++;
-                    } else {
-                        robot->direction = DOWN;
-                    }
-                    break;
-                case 1:
-                    robot->goal_angle = ((robot->angle + 270) % 360);
-                    robot->count++;
-                    break;
-                case 2:
-                    if (robot->angle == robot->goal_angle) {
-                        robot->count = 0;
-                        robot->context = 'n';
-                        robot->direction = UP;
-                    } else {
-                        robot->direction = LEFT;
-                    }
-                    break;
-            }
-            break;
-        default:
-            robot->context = 'n';
-            break;
-    }
+    // past versions
+    
+void robotAutoMotorMove(struct Robot *robot, int f, int l, int r) {
+        robot->direction = (f>0)*!r*(!l*(f>3)*3+(l>0)*4)+(r>0)*(!l*3+(l>0));
 }
+
