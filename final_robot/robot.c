@@ -3,13 +3,20 @@
 void setup_robot(struct Robot *robot){
     // robot->x = OVERALL_WINDOW_WIDTH/2-50;
     // robot->y = OVERALL_WINDOW_HEIGHT-50;
-    // robot->true_x = OVERALL_WINDOW_WIDTH/2-100;
+    // robot->true_x = OVERALL_WINDOW_WIDTH/2-50;
     // robot->true_y = OVERALL_WINDOW_HEIGHT-50;
     // For Ed Maze 2
+    // robot->x = 410;
+    // robot->y = 410;
+    // robot->true_x = 40;
+    // robot->true_y = 410;
+
+    // For spiral ed maze;
     robot->x = 410;
     robot->y = 410;
-    robot->true_x = 40;
-    robot->true_y = 410;
+    robot->true_x = OVERALL_WINDOW_WIDTH - 90;
+    robot->true_y = OVERALL_WINDOW_HEIGHT / 4 + 10;
+
     robot->width = ROBOT_WIDTH;
     robot->height = ROBOT_HEIGHT;
     robot->direction = 0;

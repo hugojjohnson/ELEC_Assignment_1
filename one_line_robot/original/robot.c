@@ -329,61 +329,13 @@ void robotMotorMove(struct Robot * robot, int crashed) {
 
 // DEFINE FUNCTIONS HERE
 
-void robotAutoMotorMove(struct Robot *robot, int front_centre_sensor, int left_sensor, int right_sensor) {
-    printf("Left, front, right = (%d, %d, %d).\n", left_sensor>0, front_centre_sensor>0, right_sensor>0);
-
-    int front = front_centre_sensor>0;
-    int left = left_sensor>0;
-    int right = right_sensor>0;
-
-    if (robot->currentSpeed > 3) {
-        robot->direction = DOWN;
-        return;
-    }
-    
-    if (!left && front && !right && front_centre_sensor >3) {
-        robot->direction = LEFT;
-        return;
-    }
-
-    // Each of these entries represents a row of the truth table.
-    if (!left && !front && !right) {
-        // robot->direction = DOWN;
-        return;
-    }
-
-    if (!left && !front && right) {
-        robot->direction = LEFT;
-        return;
-    }
-
-    if (!left && front && !right) {
-        // robot->direction = DOWN;
-        return;
-    }
-
-    if (!left && front && right) {
-        robot->direction = LEFT;
-        return;
-    }
-
-    if (left && !front && !right) {
-        // robot->direction = DOWN;
-        return;
-    }
-
-    if (left && !front && right) {
-        robot->direction = UP;
-        return;
-    }
-
-    if (left && front && !right) {
-        robot->direction = RIGHT;
-        return;
-    }
-
-    if (left && front && right) {
-        robot->direction = UP;
-        return;
-    }
+void robotAutoMotorMove(struct Robot *robot, int front, int left, int right) {
+    robot->direction = (!(left>0)*front*!(right>0)*(front>0)>3)*LEFT
+    + (!(left>0)*!(front>0)*(right>0))*LEFT
+    + (!(left>0)*(front>0)*(right>0))*LEFT
+    + ((left>0)*!(front>0)*(right>0))*UP
+    + ((left>0)*(front>0)*!(right>0))*RIGHT
+    + ((left>0)*(front>0)*(right>0))*UP;
 }
+
+

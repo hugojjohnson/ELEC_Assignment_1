@@ -52,73 +52,73 @@ int main(int argc, char *argv[]) {
 
 
     // === My maze ===
-    // insertAndSetFirstWall(&head, 1, 170, 410, 10, 250);
-    // insertAndSetFirstWall(&head, 1, 170, 410, 270, 10);
-    // insertAndSetFirstWall(&head, 1, 410, 410, 10, 50);
-    // insertAndSetFirstWall(&head, 1, 410, 460, 30, 10);
-    // insertAndSetFirstWall(&head, 1, 440, 260, 10, 200);
-    // insertAndSetFirstWall(&head, 1, 190, 260, 250, 10);
+    insertAndSetFirstWall(&head, 1, 170, 410, 10, 250);
+    insertAndSetFirstWall(&head, 1, 170, 410, 270, 10);
+    insertAndSetFirstWall(&head, 1, 410, 410, 10, 50);
+    insertAndSetFirstWall(&head, 1, 410, 460, 30, 10);
+    insertAndSetFirstWall(&head, 1, 440, 260, 10, 200);
+    insertAndSetFirstWall(&head, 1, 190, 260, 250, 10);
 
-    // insertAndSetFirstWall(&head, 1, 270, 510, 10, 150);
-    // insertAndSetFirstWall(&head, 1, 270, 510, 40, 10);
-    // insertAndSetFirstWall(&head, 1, 310, 510, 10, 50);
-    // insertAndSetFirstWall(&head, 1, 310, 560, 200, 10);
-    // insertAndSetFirstWall(&head, 1, 510, 110, 10, 450);
-    // insertAndSetFirstWall(&head, 1, 110, 110, 400, 10);
-    // insertAndSetFirstWall(&head, 1, 110, 110, 10, 230);
-    // insertAndSetFirstWall(&head, 1, 110, 340, 200, 10);
-    // insertAndSetFirstWall(&head, 1, 10, 440, 160, 10);
-    // insertAndSetFirstWall(&head, 1, 10, 10, 10, 430);
-    // insertAndSetFirstWall(&head, 1, 10, 10, 450, 10);
+    insertAndSetFirstWall(&head, 1, 270, 510, 10, 150);
+    insertAndSetFirstWall(&head, 1, 270, 510, 40, 10);
+    insertAndSetFirstWall(&head, 1, 310, 510, 10, 50);
+    insertAndSetFirstWall(&head, 1, 310, 560, 200, 10);
+    insertAndSetFirstWall(&head, 1, 510, 110, 10, 450);
+    insertAndSetFirstWall(&head, 1, 110, 110, 400, 10);
+    insertAndSetFirstWall(&head, 1, 110, 110, 10, 230);
+    insertAndSetFirstWall(&head, 1, 110, 340, 200, 10);
+    insertAndSetFirstWall(&head, 1, 10, 440, 160, 10);
+    insertAndSetFirstWall(&head, 1, 10, 10, 10, 430);
+    insertAndSetFirstWall(&head, 1, 10, 10, 450, 10);
 
 
     /// === Ed maze ===
-    insertAndSetFirstWall(&head, 1, 128, OVERALL_WINDOW_HEIGHT / 2, 10, 320);
-    insertAndSetFirstWall(&head, 2, 256, OVERALL_WINDOW_HEIGHT / 2, 10, 320);
-    insertAndSetFirstWall(&head, 3, OVERALL_WINDOW_WIDTH / 2 - 350, 320, 160,
-                          10);
-    insertAndSetFirstWall(&head, 4, OVERALL_WINDOW_WIDTH / 2 - 350, 192, 510,
-                          10);
-    insertAndSetFirstWall(&head, 5, 0, 192, 10, 128);
-    insertAndSetFirstWall(&head, 6, 256, OVERALL_WINDOW_HEIGHT / 2, 50, 10);
-    insertAndSetFirstWall(&head, 7, 306, OVERALL_WINDOW_HEIGHT / 2, 10, 200);
-    insertAndSetFirstWall(&head, 8, 428, 192, 10, 260);
-    insertAndSetFirstWall(&head, 12, 477, 192, 10, 260);
-    insertAndSetFirstWall(&head, 11, 599, -20, 10, 520);
+    // insertAndSetFirstWall(&head, 1, 128, OVERALL_WINDOW_HEIGHT / 2, 10, 320);
+    // insertAndSetFirstWall(&head, 2, 256, OVERALL_WINDOW_HEIGHT / 2, 10, 320);
+    // insertAndSetFirstWall(&head, 3, OVERALL_WINDOW_WIDTH / 2 - 350, 320, 160,
+    //                       10);
+    // insertAndSetFirstWall(&head, 4, OVERALL_WINDOW_WIDTH / 2 - 350, 192, 510,
+    //                       10);
+    // insertAndSetFirstWall(&head, 5, 0, 192, 10, 128);
+    // insertAndSetFirstWall(&head, 6, 256, OVERALL_WINDOW_HEIGHT / 2, 50, 10);
+    // insertAndSetFirstWall(&head, 7, 306, OVERALL_WINDOW_HEIGHT / 2, 10, 200);
+    // insertAndSetFirstWall(&head, 8, 428, 192, 10, 260);
+    // insertAndSetFirstWall(&head, 12, 477, 192, 10, 260);
+    // insertAndSetFirstWall(&head, 11, 599, -20, 10, 520);
 
-    insertAndSetFirstWall(&head, 13, 0, 0, 600, 10);
+    // insertAndSetFirstWall(&head, 13, 0, 0, 600, 10);
 
-    // Large Curved Wall
-    int radius = 147;
-    int centerX = 453;
-    int centerY = 490;
-    int numSegments = 1000;
-    double angleIncrement = M_PI / numSegments;
+    // // Large Curved Wall
+    // int radius = 147;
+    // int centerX = 453;
+    // int centerY = 490;
+    // int numSegments = 1000;
+    // double angleIncrement = M_PI / numSegments;
 
-    for (int i = 0; i < numSegments; i++) {
-        int startX = centerX - radius * cos(i * angleIncrement);
-        int startY = centerY + radius * sin(i * angleIncrement);
-        int endX = centerX - radius * cos((i + 1) * angleIncrement);
-        int endY = centerY + radius * sin((i + 1) * angleIncrement);
+    // for (int i = 0; i < numSegments; i++) {
+    //     int startX = centerX - radius * cos(i * angleIncrement);
+    //     int startY = centerY + radius * sin(i * angleIncrement);
+    //     int endX = centerX - radius * cos((i + 1) * angleIncrement);
+    //     int endY = centerY + radius * sin((i + 1) * angleIncrement);
 
-        insertAndSetFirstWall(&head, i + 14, startX, startY, 10, 10);
-    }
+    //     insertAndSetFirstWall(&head, i + 14, startX, startY, 10, 10);
+    // }
 
-    // Small Curved Wall
-    int radius2 = 25;
-    int centerX2 = 453;
-    int centerY2 = 450;
-    int numSegments2 = 500;
-    double angleIncrement2 = M_PI / numSegments2;
+    // // Small Curved Wall
+    // int radius2 = 25;
+    // int centerX2 = 453;
+    // int centerY2 = 450;
+    // int numSegments2 = 500;
+    // double angleIncrement2 = M_PI / numSegments2;
 
-    for (int i = 0; i < numSegments2; i++) {
-        int startX2 = centerX2 - radius2 * cos(i * angleIncrement2);
-        int startY2 = centerY2 + radius2 * sin(i * angleIncrement2);
-        int endX2 = centerX2 - radius2 * cos((i + 1) * angleIncrement2);
-        int endY2 = centerY2 + radius2 * sin((i + 1) * angleIncrement2);
+    // for (int i = 0; i < numSegments2; i++) {
+    //     int startX2 = centerX2 - radius2 * cos(i * angleIncrement2);
+    //     int startY2 = centerY2 + radius2 * sin(i * angleIncrement2);
+    //     int endX2 = centerX2 - radius2 * cos((i + 1) * angleIncrement2);
+    //     int endY2 = centerY2 + radius2 * sin((i + 1) * angleIncrement2);
 
-        insertAndSetFirstWall(&head, i + 14, startX2, startY2, 10, 10);
-    }
+    //     insertAndSetFirstWall(&head, i + 14, startX2, startY2, 10, 10);
+    // }
 
     // === Second Ed Maze ===
     // insertAndSetFirstWall(&head, 0, 110, 360, 10, 100);
@@ -177,7 +177,17 @@ int main(int argc, char *argv[]) {
     // insertAndSetFirstWall(&head, 1, 495, 385, 60, 10);
     // insertAndSetFirstWall(&head, 1, 75, 445, 540, 10);
 
-   
+    // // Spiral Ed maze
+    // for (float i = 0; i < 25; i += 0.01){
+    // insertAndSetFirstWall(&head, 0, OVERALL_WINDOW_WIDTH/2 + 15 * i * cos(i), OVERALL_WINDOW_HEIGHT/2 + 10 * i * sin(i), 10, 10);
+    // }
+
+    // for (int i = 0; i <= 10; i++){
+    //     insertAndSetFirstWall(&head, 0, OVERALL_WINDOW_WIDTH - 5 * i, OVERALL_WINDOW_HEIGHT/4 + 5 * i, 10, 10);
+    // }
+
+
+
     // === End of mazes ===
 
     setup_robot(&robot);
@@ -189,7 +199,7 @@ int main(int argc, char *argv[]) {
         SDL_RenderClear(renderer);
 
         // This if statement is here to introduce a pause feature in order to debug our program. 
-        // It does not affect the gameplay of the simulation.
+        // It does not affect the simulation.
         if (robot.paused == false || robot.next_frame == true) {
             //Move robot based on user input commands/auto commands
             if (robot.auto_mode == 1)

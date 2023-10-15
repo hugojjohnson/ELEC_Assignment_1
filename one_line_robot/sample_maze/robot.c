@@ -330,7 +330,12 @@ void robotMotorMove(struct Robot * robot, int crashed) {
 // DEFINE FUNCTIONS HERE
     // past versions
     
+
+
+
+
+    
 void robotAutoMotorMove(struct Robot *robot, int f, int l, int r) {
-        robot->direction = (f>0)*!r*(!l*(f>3)*3+(l>0)*4)+(r>0)*(!l*3+(l>0));
+        robot->direction = !r*(!l*(f>3)*3+(l>0)*4)+(r>0)*(!l*3+(l>0));
 }
 

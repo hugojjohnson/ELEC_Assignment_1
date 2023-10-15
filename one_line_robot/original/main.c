@@ -60,6 +60,7 @@ int main(int argc, char *argv[]) {
         SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
         SDL_RenderClear(renderer);
 
+        // This is here as a pause feature to help us debug our program. It does not affect the simulation.
         if (!robot.paused || robot.next_frame) {
 
                 // Move robot based on user input commands/auto commands
